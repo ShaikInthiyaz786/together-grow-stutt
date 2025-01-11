@@ -1,0 +1,22 @@
+.product-name {
+    font-size: 18px; /* Default font size for large screens */
+  }
+  
+  @media (max-width: 1200px) {
+    .product-name {
+      font-size: 16px; /* Font size for tablets or medium screens */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .product-name {
+      font-size: 14px; /* Font size for mobile screens */
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .product-name {
+      font-size: 12px; /* Smaller font size for very small screens */
+    }
+  }
+  
