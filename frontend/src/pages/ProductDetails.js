@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useParams } from "react-router-dom";
 import Header from "../components/Header";
 import ProductGridInline from "../components/ProductGridInline";
+import Footer from "../components/Footer";
 
 const ProductDetails = () => {
   const { id } = useParams(); // Get the product ID from the URL
@@ -45,7 +46,7 @@ const ProductDetails = () => {
   return (
     <>
     <Header/>
-    <div className="container mt-5">
+    <div className="container mt-3">
       <div className="row">
         {/* Left Side - Image Carousel */}
         <div className="col-md-4">
@@ -64,6 +65,7 @@ const ProductDetails = () => {
                     src={image}
                     className="d-block w-100"
                     alt={`Product Image ${index + 1}`}
+                    style={{ height: '500px', objectFit: 'contain' }} // Full image, scaled to fit
                   />
                 </div>
               ))}
@@ -96,62 +98,25 @@ const ProductDetails = () => {
         </div>
 
         {/* Right Side - Product Details */}
-        {/* Right Side - Product Details */}
 <div className="col-md-8">
   <p className="text-uppercase fw-bold">STUTT CLOTHING BRAND</p>
   <h2 className="fw-bold">{product.name}</h2>
 
   {/* Price and Discount */}
   <div className="d-flex align-items-center gap-3">
-    <h4 className="text-danger fw-bold">Rs. {product.discountedPrice}</h4>
+    <h4 className=" fw-bold" style={{color: '#850001' }}>Rs. {product.discountedPrice}</h4>
     <p className="text-decoration-line-through text-muted">Rs. {product.originalPrice}</p>
     <span className="badge bg-warning text-dark">{product.discount}% off</span>
   </div>
 
   {/* Points */}
-  <p className="text-danger fw-bold">{product.point} Points</p>
+  <p className="fw-bold" style={{color: '#850001' }}>{product.point} Points</p>
 
   {/* Details */}
   <p><strong>FIT:</strong> {product.fit}</p>
   <p><strong>FABRIC:</strong> {product.fabric}</p>
   <p><strong>MODEL SIZE:</strong> {product.modelSize}</p>
   <p><strong>COLOR:</strong> {product.color}</p>
-
-  {/* Size Selection */}
-  {/* <div className="mb-3">
-    <h5>SIZE:</h5>
-    <div className="btn-group" role="group">
-      {product.sizes?.map((size) => (
-        <button
-          key={size}
-          type="button"
-          className="btn btn-outline-secondary"
-        >
-          {size}
-        </button>
-      ))}
-    </div>
-  </div> */}
-
-{/* Size Selection */}
-{/* <div className="mb-3">
-  <h5 className="mb-2">SIZE:</h5>
-  <div className="d-flex gap-2">
-    {product.sizes?.map((size) => (
-      <div
-        key={size}
-        className="border rounded text-center py-2 px-3"
-        style={{ cursor: "pointer", minWidth: "40px" }}
-      >
-        {size}
-      </div>
-    ))}
-  </div>
-</div>
-
-{console.log(product.sizes)} */}
-
-
 
   {/* Quantity Selector */}
   <div className="mb-3 d-flex align-items-center">
@@ -169,20 +134,31 @@ const ProductDetails = () => {
   </div>
 
   {/* Wishlist Button */}
-  <button className="btn btn-link text-danger">
+  <button className="btn btn-link" style={{color: '#850001' }}>
     <i className="bi bi-heart"></i> Add to Wishlist
   </button>
 
-  {/* Action Buttons */}
-  <div className="d-flex gap-2 mt-3">
-    <button className="btn btn-danger flex-grow-1">Add to Cart</button>
-    <button className="btn btn-outline-danger flex-grow-1">Buy Now</button>
-  </div>
+  <div className="d-flex justify-content-center align-items-center gap-4 mt-3">
+  <button
+    className="btn btn-danger flex-grow-1"
+    style={{ backgroundColor: '#850001', color: 'white' }}
+  >
+    Add to Cart
+  </button>
+  <button
+    className="btn btn-outline-danger flex-grow-1"
+    style={{ backgroundColor: '#850001', color: 'white' }}
+  >
+    Buy Now
+  </button>
+</div>
+
 </div>
 
       </div>
     </div>
     <ProductGridInline />
+    <Footer />
     </>
   );
 };

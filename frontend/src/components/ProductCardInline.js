@@ -54,7 +54,7 @@ const ProductCardInline = ({ id, images, name, originalPrice, discountedPrice })
         <p className="text-muted text-decoration-line-through mb-1 product-name" style={{ fontSize: "12px" }}>
           Rs. {originalPrice}
         </p>
-        <p className="text-danger fw-bold product-name" style={{ fontSize: "14px" }}>
+        <p className=" fw-bold product-name" style={{ fontSize: "14px", color: '#850001' }}>
           Rs. {discountedPrice}
         </p>
       </div>
