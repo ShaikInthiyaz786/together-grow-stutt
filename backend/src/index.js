@@ -12,6 +12,10 @@ app.use(cors());
 app.use("/auth", userRouter);
 app.use("/products", productRouter);
 
+app.get("/",(req,res)=>{
+  res.send("hello inthehaj bhaii..........")
+})
+
 mongoose.connect(
   "mongodb+srv://shaikinthiyaz904:Inthiyaz9293@cluster0.txdsr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
   {
