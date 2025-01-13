@@ -37,7 +37,9 @@ const Header = () => {
         <div className="d-flex gap-3" style={{ marginRight: "15px" }}>
           {!cookies.access_token ? (
             <Link to="/auth" className="btn btn-link">
-              Login/Register
+              <div className="d-flex gap-3">
+        <i className="bi bi-person fs-4"></i>
+      </div>
             </Link>
           ) : (
             <button onClick={logout} className="btn btn-link">
