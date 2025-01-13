@@ -38,8 +38,6 @@ const HeroSection = () => {
               style={{ maxHeight: "500px", objectFit: "cover" }}
             />
             <div className="carousel-caption d-none d-md-block">
-              <h5 className="fw-bold">Winter Collection</h5>
-              <p>Explore the latest trends in winter fashion.</p>
               <button className="btn btn-dark">Shop Now</button>
             </div>
           </div>
@@ -51,8 +49,6 @@ const HeroSection = () => {
               style={{ maxHeight: "500px", objectFit: "cover" }}
             />
             <div className="carousel-caption d-none d-md-block">
-              <h5 className="fw-bold">New Arrivals</h5>
-              <p>Discover our exclusive collection of T-shirts.</p>
               <button className="btn btn-dark">Shop Now</button>
             </div>
           </div>
@@ -64,8 +60,6 @@ const HeroSection = () => {
               style={{ maxHeight: "500px", objectFit: "cover" }}
             />
             <div className="carousel-caption d-none d-md-block">
-              <h5 className="fw-bold">Limited Edition</h5>
-              <p>Grab your favorites before they're gone.</p>
               <button className="btn btn-dark">Shop Now</button>
             </div>
           </div>

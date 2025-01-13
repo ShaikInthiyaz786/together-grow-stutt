@@ -16,8 +16,8 @@ const Circles = () => (
         <div
           className="rounded-circle"
           style={{
-            width: "60px", // Adjust size as needed
-            height: "60px",
+            width: "80px", // Adjust size as needed
+            height: "80px",
             overflow: "hidden",
             border: "2px solid #ccc", // Optional border
           }}
