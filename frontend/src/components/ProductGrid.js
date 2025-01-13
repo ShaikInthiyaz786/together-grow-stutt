@@ -10,7 +10,7 @@ const ProductGrid = () => {
     // Fetch data from the API
     const fetchProducts = async () => {
       try {
-        const response = await fetch("http://localhost:3001/products/");
+        const response = await fetch("https://together-grow-stutt.onrender.com/products/");
         if (!response.ok) {
           throw new Error("Failed to fetch products");
         }

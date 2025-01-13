@@ -1,34 +1,3 @@
-// import mongoose from "mongoose";
-
-// const productSchema = mongoose.Schema({
-//   id: {
-//     type: Number,
-//     required: true,
-//     unique: true, // Ensures no duplicate IDs
-//   },
-//   name: {
-//     type: String,
-//     required: true,
-//   },
-//   originalPrice: {
-//     type: Number,
-//     required: true,
-//   },
-//   discountedPrice: {
-//     type: Number,
-//     required: true,
-//   },
-//   images: {
-//     type: [String], // Array of strings to store multiple image URLs
-//     required: true,
-//   },
-// });
-
-// export const ProductModel = mongoose.model("Products", productSchema);
-
-
-
-
 import mongoose from "mongoose";
 
 const productSchema = mongoose.Schema({

@@ -13,7 +13,7 @@ app.use("/auth", userRouter);
 app.use("/products", productRouter);
 
 app.get("/",(req,res)=>{
-  res.send("hello inthehaj bhaii..........")
+  res.send("Hello World")
 })
 
 mongoose.connect(
