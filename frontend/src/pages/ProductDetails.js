@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useParams } from "react-router-dom";
 import Header from "../components/Header";
+import ProductGridInline from "../components/ProductGridInline";
 
 const ProductDetails = () => {
   const { id } = useParams(); // Get the product ID from the URL
@@ -181,6 +182,7 @@ const ProductDetails = () => {
 
       </div>
     </div>
+    <ProductGridInline />
     </>
   );
 };

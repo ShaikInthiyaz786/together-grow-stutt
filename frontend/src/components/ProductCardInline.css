@@ -1,0 +1,62 @@
+.product-name {
+    font-size: 18px; /* Default font size for large screens */
+  }
+  
+  @media (max-width: 1200px) {
+    .product-name {
+      font-size: 16px; /* Font size for tablets or medium screens */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .product-name {
+      font-size: 14px; /* Font size for mobile screens */
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .product-name {
+      font-size: 12px; /* Smaller font size for very small screens */
+    }
+  }
+ /* Horizontal scroll container */
+.horizontal-scroll-container {
+    display: flex;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    padding: 10px 0;
+    gap: 10px;
+    scroll-snap-type: x mandatory; /* Add snap for smooth scrolling */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    white-space: nowrap; /* Prevent wrapping */
+  }
+  
+  /* Optional: Hide scrollbar in a clean way on modern browsers */
+  .horizontal-scroll-container::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .horizontal-scroll-container {
+    -ms-overflow-style: none;  /* IE 10+ */
+    scrollbar-width: none;      /* Firefox */
+  }
+  
+  /* Product card wrapper */
+  .product-card-wrapper {
+    flex: 0 0 auto;
+    width: 180px;   /* Adjust width to fit your desired card size */
+  }
+  
+  /* Ensure smooth scroll snapping to each card */
+  .horizontal-scroll-container {
+    scroll-snap-type: x mandatory;
+  }
+  
+  .product-card-wrapper {
+    scroll-snap-align: start;
+  }
+  
+  .card {
+    width: 100%; /* Cards take full width of their container */
+    height: 100%;
+  }
+  
