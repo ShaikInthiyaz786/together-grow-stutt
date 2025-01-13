@@ -32,15 +32,13 @@ router.get("/product/:id", async (req, res) => {
   }
 });
 
-
-// POST route to add a new product
 router.post("/", verifyToken, async (req, res) => {
   try {
-    const { id, name, originalPrice, discountedPrice, image } = req.body;
+    const { id, name, originalPrice, discountedPrice, images, point, fit, fabric, modelSize, color } = req.body;
 
     // Validate required fields
-    if (!id || !name || !originalPrice || !discountedPrice || !image) {
-      return res.status(400).json({ error: "All fields are required" });
+    if (!id || !name || !originalPrice || !discountedPrice || !images || !Array.isArray(images) || images.length === 0) {
+      return res.status(400).json({ error: "All fields are required, and 'images' must be a non-empty array" });
     }
 
     // Create a new product
@@ -49,7 +47,12 @@ router.post("/", verifyToken, async (req, res) => {
       name,
       originalPrice,
       discountedPrice,
-      image,
+      images,
+      point,
+      fit,
+      fabric,
+      modelSize,
+      color,
     });
 
     // Save the product to the database
@@ -67,10 +70,14 @@ router.post("/", verifyToken, async (req, res) => {
 });
 
 
-// Route to update a product by ID
 router.put("/product/:id", async (req, res) => {
   const productId = req.params.id;
   const updatedData = req.body;
+
+  // Validate images if provided
+  if (updatedData.images && (!Array.isArray(updatedData.images) || updatedData.images.length === 0)) {
+    return res.status(400).json({ error: "'images' must be a non-empty array" });
+  }
 
   try {
     // Find the product by ID and update it with the new data
@@ -89,6 +96,7 @@ router.put("/product/:id", async (req, res) => {
     res.status(500).json({ message: "Server error", error });
   }
 });
+
 
 
 // Route to delete a product by ID

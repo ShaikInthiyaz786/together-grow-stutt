@@ -1,114 +1,7 @@
-// import React from "react";
-// import "bootstrap/dist/css/bootstrap.min.css";
-
-// const ProductPage = () => {
-//   return (
-//     <div className="container mt-5">
-//       <div className="row">
-//         {/* Left Side - Image Carousel */}
-//         <div className="col-md-4">
-//           <div
-//             id="carouselExample"
-//             className="carousel slide"
-//             data-bs-ride="carousel"
-//           >
-//             <div className="carousel-inner">
-//               <div className="carousel-item active">
-//                 <img
-//                   src="path-to-image-1.jpg"
-//                   className="d-block w-100"
-//                   alt="..."
-//                 />
-//               </div>
-//               <div className="carousel-item">
-//                 <img
-//                   src="path-to-image-2.jpg"
-//                   className="d-block w-100"
-//                   alt="..."
-//                 />
-//               </div>
-//               {/* Add more images here */}
-//             </div>
-//             <button
-//               className="carousel-control-prev"
-//               type="button"
-//               data-bs-target="#carouselExample"
-//               data-bs-slide="prev"
-//             >
-//               <span
-//                 className="carousel-control-prev-icon"
-//                 aria-hidden="true"
-//               ></span>
-//               <span className="visually-hidden">Previous</span>
-//             </button>
-//             <button
-//               className="carousel-control-next"
-//               type="button"
-//               data-bs-target="#carouselExample"
-//               data-bs-slide="next"
-//             >
-//               <span
-//                 className="carousel-control-next-icon"
-//                 aria-hidden="true"
-//               ></span>
-//               <span className="visually-hidden">Next</span>
-//             </button>
-//           </div>
-//         </div>
-
-//         {/* Right Side - Product Details */}
-//         <div className="col-md-8">
-//           <h2 className="fw-bold">RWDY ESSENTIAL SWEATSHIRT</h2>
-//           <p>You will earn <strong>24 coins</strong> with this product</p>
-
-//           {/* Size Selection */}
-//           <div className="mb-3">
-//             <h5>Size</h5>
-//             <div className="btn-group" role="group" aria-label="Size options">
-//               <button type="button" className="btn btn-outline-secondary">
-//                 XS
-//               </button>
-//               <button type="button" className="btn btn-outline-secondary">
-//                 S
-//               </button>
-//               <button type="button" className="btn btn-outline-secondary">
-//                 M
-//               </button>
-//               <button type="button" className="btn btn-outline-secondary">
-//                 L
-//               </button>
-//               <button type="button" className="btn btn-outline-secondary">
-//                 XL
-//               </button>
-//               <button type="button" className="btn btn-outline-secondary active">
-//                 XXL
-//               </button>
-//             </div>
-//           </div>
-
-//           {/* Price */}
-//           <div className="mb-3">
-//             <h5>Price</h5>
-//             <p className="text-danger fw-bold">₹ 2490</p>
-//           </div>
-
-//           {/* Buttons */}
-//           <div className="d-flex gap-2">
-//             <button className="btn btn-outline-primary w-50">Add to Cart</button>
-//             <button className="btn btn-primary w-50">Buy Now</button>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default ProductPage;
-
-
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useParams } from "react-router-dom"; // Assuming you are using React Router for navigation
+import { useParams } from "react-router-dom";
+import Header from "../components/Header";
 
 const ProductPage = () => {
   const { id } = useParams(); // Get the product ID from the URL
@@ -144,12 +37,13 @@ const ProductPage = () => {
     return <div className="container mt-5">Error: {error}</div>;
   }
 
-  if (!product) {
-    return <div className="container mt-5">No product found</div>;
+  if (!product || !Array.isArray(product.images) || product.images.length === 0) {
+    return <div className="container mt-5">No product images available</div>;
   }
-  console.log(product.image)
 
   return (
+    <>
+    <Header/>
     <div className="container mt-5">
       <div className="row">
         {/* Left Side - Image Carousel */}
@@ -160,11 +54,18 @@ const ProductPage = () => {
             data-bs-ride="carousel"
           >
             <div className="carousel-inner">
-              <img
-                    src={product.image}
+              {product.images.map((image, index) => (
+                <div
+                  key={index}
+                  className={`carousel-item ${index === 0 ? "active" : ""}`}
+                >
+                  <img
+                    src={image}
                     className="d-block w-100"
-                    alt={`Product Image`}
+                    alt={`Product Image ${index + 1}`}
                   />
+                </div>
+              ))}
             </div>
             <button
               className="carousel-control-prev"
@@ -194,42 +95,93 @@ const ProductPage = () => {
         </div>
 
         {/* Right Side - Product Details */}
-        <div className="col-md-8">
-          <h2 className="fw-bold">{product.name}</h2>
-          <p>
-            You will earn <strong>{product.coins} coins</strong> with this product
-          </p>
+        {/* Right Side - Product Details */}
+<div className="col-md-8">
+  <p className="text-uppercase fw-bold">STUTT CLOTHING BRAND</p>
+  <h2 className="fw-bold">{product.name}</h2>
 
-          {/* Size Selection */}
-          <div className="mb-3">
-            <h5>Size</h5>
-            <div className="btn-group" role="group" aria-label="Size options">
-              {product.sizes?.map((size) => (
-                <button
-                  key={size}
-                  type="button"
-                  className="btn btn-outline-secondary"
-                >
-                  {size}
-                </button>
-              ))}
-            </div>
-          </div>
+  {/* Price and Discount */}
+  <div className="d-flex align-items-center gap-3">
+    <h4 className="text-danger fw-bold">Rs. {product.discountedPrice}</h4>
+    <p className="text-decoration-line-through text-muted">Rs. {product.originalPrice}</p>
+    <span className="badge bg-warning text-dark">{product.discount}% off</span>
+  </div>
 
-          {/* Price */}
-          <div className="mb-3">
-            <h5>Price</h5>
-            <p className="text-danger fw-bold">₹ {product.originalPrice}</p>
-          </div>
+  {/* Points */}
+  <p className="text-danger fw-bold">{product.point} Points</p>
 
-          {/* Buttons */}
-          <div className="d-flex gap-2">
-            <button className="btn btn-outline-primary w-50">Add to Cart</button>
-            <button className="btn btn-primary w-50">Buy Now</button>
-          </div>
-        </div>
+  {/* Details */}
+  <p><strong>FIT:</strong> {product.fit}</p>
+  <p><strong>FABRIC:</strong> {product.fabric}</p>
+  <p><strong>MODEL SIZE:</strong> {product.modelSize}</p>
+  <p><strong>COLOR:</strong> {product.color}</p>
+
+  {/* Size Selection */}
+  {/* <div className="mb-3">
+    <h5>SIZE:</h5>
+    <div className="btn-group" role="group">
+      {product.sizes?.map((size) => (
+        <button
+          key={size}
+          type="button"
+          className="btn btn-outline-secondary"
+        >
+          {size}
+        </button>
+      ))}
+    </div>
+  </div> */}
+
+{/* Size Selection */}
+{/* <div className="mb-3">
+  <h5 className="mb-2">SIZE:</h5>
+  <div className="d-flex gap-2">
+    {product.sizes?.map((size) => (
+      <div
+        key={size}
+        className="border rounded text-center py-2 px-3"
+        style={{ cursor: "pointer", minWidth: "40px" }}
+      >
+        {size}
+      </div>
+    ))}
+  </div>
+</div>
+
+{console.log(product.sizes)} */}
+
+
+
+  {/* Quantity Selector */}
+  <div className="mb-3 d-flex align-items-center">
+    <h5 className="me-3">QUANTITY:</h5>
+    <div className="input-group" style={{ width: "100px" }}>
+      <button className="btn btn-outline-secondary">-</button>
+      <input
+        type="text"
+        className="form-control text-center"
+        value="1"
+        readOnly
+      />
+      <button className="btn btn-outline-secondary">+</button>
+    </div>
+  </div>
+
+  {/* Wishlist Button */}
+  <button className="btn btn-link text-danger">
+    <i className="bi bi-heart"></i> Add to Wishlist
+  </button>
+
+  {/* Action Buttons */}
+  <div className="d-flex gap-2 mt-3">
+    <button className="btn btn-danger flex-grow-1">Add to Cart</button>
+    <button className="btn btn-outline-danger flex-grow-1">Buy Now</button>
+  </div>
+</div>
+
       </div>
     </div>
+    </>
   );
 };
 

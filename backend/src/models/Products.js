@@ -1,37 +1,30 @@
 // import mongoose from "mongoose";
 
-// const recipeSchema = mongoose.Schema({
+// const productSchema = mongoose.Schema({
+//   id: {
+//     type: Number,
+//     required: true,
+//     unique: true, // Ensures no duplicate IDs
+//   },
 //   name: {
 //     type: String,
 //     required: true,
 //   },
-//   ingredients: [
-//     {
-//       type: String,
-//       required: true,
-//     },
-//   ],
-//   instructions: {
-//     type: String,
-//     required: true,
-//   },
-
-//   imageUrl: {
-//     type: String,
-//     required: true,
-//   },
-//   cookingTime: {
+//   originalPrice: {
 //     type: Number,
 //     required: true,
 //   },
-//   userOwner: {
-//     type: mongoose.Schema.Types.ObjectId,
-//     ref: "User",
+//   discountedPrice: {
+//     type: Number,
+//     required: true,
+//   },
+//   images: {
+//     type: [String], // Array of strings to store multiple image URLs
 //     required: true,
 //   },
 // });
 
-// export const RecipesModel = mongoose.model("Products", recipeSchema);
+// export const ProductModel = mongoose.model("Products", productSchema);
 
 
 
@@ -56,9 +49,29 @@ const productSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
-  image: {
-    type: String, // Assuming `product1` is a URL or file path
+  images: {
+    type: [String], // Array of strings to store multiple image URLs
     required: true,
+  },
+  point: {
+    type: String, // Points (e.g., "Special offer", "Best seller")
+    required: false,
+  },
+  fit: {
+    type: String, // Fit (e.g., "Regular", "Slim")
+    required: false,
+  },
+  fabric: {
+    type: String, // Fabric type (e.g., "Cotton", "Polyester")
+    required: false,
+  },
+  modelSize: {
+    type: String, // Model size (e.g., "M", "L", "S")
+    required: false,
+  },
+  color: {
+    type: String, // Color of the product (e.g., "Red", "Blue")
+    required: false,
   },
 });
 
