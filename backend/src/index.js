@@ -17,7 +17,7 @@ app.get("/",(req,res)=>{
 })
 
 mongoose.connect(
-  "mongodb+srv://shaikinthiyaz904:Inthiyaz9293@cluster0.txdsr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+  "mongodb+srv://shaikinthiyaz904:Inthiyaz9293@cluster0.txdsr.mongodb.net/together_grow?retryWrites=true&w=majority&appName=Cluster0",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,

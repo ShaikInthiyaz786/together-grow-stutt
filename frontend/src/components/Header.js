@@ -18,13 +18,16 @@ const Header = () => {
       <div className="container-fluid d-flex justify-content-between align-items-center">
         {/* Left side: Logo */}
         <div className="d-flex align-items-center">
-          <img
-            src={logo}
-            alt="Logo"
-            className="me-3"
-            style={{ height: "40px", marginLeft: "15px" }}
-          />
-        </div>
+  <a href="https://together-grow-stutt.vercel.app/">
+    <img
+      src={logo}
+      alt="Logo"
+      className="me-3"
+      style={{ height: "40px", marginLeft: "15px" }}
+    />
+  </a>
+</div>
+
 
         {/* Center: Title */}
         <div className="text-center flex-grow-1" style={{ marginRight: "40px" }}>
